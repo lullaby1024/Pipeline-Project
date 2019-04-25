@@ -6,17 +6,23 @@ import os
 from src.db_services.image import get_image
 from src.db_services.query import query
 from src.model_services.label_image import predict_label
+from src.handlers.upload import UploadHandler
 
+class IndexHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render("html/index.html")
 
 class MainHandler(tornado.web.RequestHandler):
+    def _initialize(self, image):
+        self.image = image
+
     def run_model(self):
         # CAVEAT: local executions
-        image_path = get_image()
-        query_ingr = predict_label(image_path) # list of ingredients
+        image_path = get_image(self.image)
+        query_ingr = predict_label(image_path)  # list of ingredients
         results = query(query_ingr)  # dictionary
 
         self.render("html/recommendation.html", data=results)
-
 
 class Application(tornado.web.Application):
     def __init__(self):
@@ -27,8 +33,9 @@ class Application(tornado.web.Application):
         }
 
         app_handlers = [
-
-            (r'^/$', MainHandler)
+            (r'^/$', IndexHandler),
+            (r'^/upload$', UploadHandler)
+            (r'^/recommend$', MainHandler, {'image': image})
 
         ]
 
