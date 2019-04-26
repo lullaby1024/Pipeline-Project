@@ -4,6 +4,7 @@ from util import Event
 import os
 from sqlalchemy import *
 from sqlalchemy.pool import NullPool
+from sqlalchemy import create_engine
 from flask import Flask, request, render_template, g, redirect, Response
 
 tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
@@ -20,11 +21,11 @@ engine = create_engine(DATABASEURI)
 
 #input:['chicken']
 #output: {title:..., ingred:..., instructions:...}
-def QueryHandler(ingredients):
+def query(ingredients):
 
     ingredient = ingredients[0]
     cml = "SELECT * FROM recipes WHERE lower(ingredients) LIKE '%" + ingredient.lower() + "%'"
-    result = g.conn.execute(text(cml))
+    result = g.conn.execute(cml)
 
     title = []
     ingred = []
