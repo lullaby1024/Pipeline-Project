@@ -3,7 +3,6 @@ import tornado.web
 import logging
 import os
 
-# from src.db_services.image import get_image
 from src.db_services.query import query
 from src.model_services.label_image import predict_label
 from src.handlers.upload import UploadHandler
@@ -13,12 +12,10 @@ class IndexHandler(tornado.web.RequestHandler):
         self.render("html/index.html")
 
 class MainHandler(tornado.web.RequestHandler):
-    # def _initialize(self, image_path):
-    #     self.image_path = image_path
 
-    def run_model(self):
+    def get(self):
         # CAVEAT: local executions
-        img_path = '../uploads/test_img.jpg'
+        img_path = './uploads/test_img.jpg'
         query_ingr = predict_label(img_path)  # list of ingredients
         results = query(query_ingr)  # dictionary
 
@@ -42,7 +39,7 @@ class Application(tornado.web.Application):
 
 
 if __name__ == "__main__":
-    port = 8888
+    port = 7777
     address = '0.0.0.0'
     logging_level = logging.getLevelName('INFO')
     logging.getLogger().setLevel(logging_level)
