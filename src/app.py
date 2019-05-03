@@ -2,8 +2,9 @@ import tornado.ioloop
 import tornado.web
 import logging
 import os
+import json
 
-from src.db_services.query import query
+from src.db_services.query_mysql import query
 from src.model_services.label_image import predict_label
 from src.handlers.upload import UploadHandler
 
@@ -17,8 +18,8 @@ class MainHandler(tornado.web.RequestHandler):
         # CAVEAT: local executions
         img_path = './uploads/test_img.jpg'
         query_ingr = predict_label(img_path)  # list of ingredients
+        # self.write(query_ingr)
         results = query(query_ingr)  # dictionary
-
         self.render("html/recommendation.html", data=results)
 
 class Application(tornado.web.Application):
