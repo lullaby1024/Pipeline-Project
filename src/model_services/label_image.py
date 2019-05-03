@@ -71,8 +71,8 @@ def load_labels(label_file):
 
 def predict_label(image_path):
   file_name = str(image_path)
-  model_file = "tf_files/retrained_graph.pb"
-  label_file = "tf_files/retrained_labels.txt"
+  model_file = "./model_services/tf_files/retrained_graph.pb"
+  label_file = "./model_services/tf_files/retrained_labels.txt"
   input_height = 299
   input_width = 299
   input_mean = 128
