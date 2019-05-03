@@ -1,12 +1,50 @@
+<!DOCTYPE html>
 <html>
    <head>
-      <title>{{ "Recommended Recipe" }}</title>
+       <title>Recommended Recipe</title>
+       <style>
+            .table {
+                border: solid 1px #DDEEEE;
+                border-collapse: collapse;
+                border-spacing: 0;
+                font: normal 13px Arial, sans-serif;
+            }
+            .table thead th {
+                background-color: #DDEFEF;
+                border: solid 1px #DDEEEE;
+                color: #336B6B;
+                padding: 10px;
+                text-align: left;
+                text-shadow: 1px 1px 1px #fff;
+            }
+            .table tbody td {
+                border: solid 1px #DDEEEE;
+                color: #333;
+                padding: 10px;
+                text-shadow: 1px 1px 1px #fff;
+            }
+       </style>
    </head>
    <body>
-     <ul>
-       {% for item in data %}
-         <li>{{ escape(item) }}</li>
-       {% end %}
-     </ul>
+        <p><h1>Recommended recipes: </h1></p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Ingredients</th>
+                    <th>Instructions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for r in data%}
+                <tr>
+                    <td>{{r['title']}}</td>
+                    <td>{{r['ingredients']}}</td>
+                    <td>{{r['instructions']}}</td>
+                </tr>
+            {% end %}
+            </tbody>
+        </table>
+
    </body>
  </html>
