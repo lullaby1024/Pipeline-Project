@@ -23,6 +23,10 @@ class MainHandler(tornado.web.RequestHandler):
         results = query(query_ingr)  # dictionary
         self.render("html/recommendation.html", data=results)
 
+    def post(self):
+        my_image = self.get_argument("desired image: ")
+
+
 class Application(tornado.web.Application):
     def __init__(self):
         # TODO: online executions (API)
