@@ -4,7 +4,6 @@ import logging
 import os
 import json
 
-
 from src.db_services.query_mysql import query
 from src.model_services.label_image import predict_label
 from src.handlers.upload import UploadHandler
@@ -22,10 +21,6 @@ class MainHandler(tornado.web.RequestHandler):
         # self.write(query_ingr)
         results = query(query_ingr)  # dictionary
         self.render("html/recommendation.html", data=results)
-
-    def post(self):
-        my_image = self.get_argument("desired image: ")
-
 
 class Application(tornado.web.Application):
     def __init__(self):
