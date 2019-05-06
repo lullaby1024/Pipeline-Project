@@ -4,6 +4,7 @@ import logging
 import os
 import json
 
+
 from src.db_services.query_mysql import query
 from src.model_services.label_image import predict_label
 from src.handlers.upload import UploadHandler
