@@ -25,7 +25,7 @@ def query(ingredients):
 
     ingredient = ingredients[0]
     cml = "SELECT * FROM recipes WHERE lower(ingredients) LIKE '%" + ingredient.lower() + "%'"
-    result = g.conn.execute(cml)
+    result = g.conn.execute(text(cml))
 
     title = []
     ingred = []
