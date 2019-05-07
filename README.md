@@ -4,7 +4,7 @@ This application is the project of _COMS4995 sec.009 **Data-Analytics Pipeline**
 
 This product targets users who love foods and like to cook by themselves. Users can use their phone to take pictures of ingredients available at hand, and our application would recognize those ingredients. Based on the ingredients, the application would recommend corresponding recipes with such ingredients to users.
 
-Below it is the **minimum viable product** diagram of this application.
+Below is the **minimum viable product** diagram of this application.
 
 ![Pipeline MVP and Big Picture](https://ws3.sinaimg.cn/large/006tNc79ly1g2sfhnzrc2j31t80ptgoy.jpg)
 
