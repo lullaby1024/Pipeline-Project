@@ -18,9 +18,9 @@ After a photo is uploaded to the app,  the **image recognition service** will re
 
 1. run
 
-```
-python app.py
-```
+   ```python
+   python app.py
+   ```
 
 2. open a browser and nevigate to `0.0.0.0:7777`. An index page with instructions to upload the ingredient photo will show. Upload a photo by clicking on the button.
 
