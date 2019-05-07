@@ -18,7 +18,7 @@
 	  }
 
     header {
-      background-color: #666;
+      background-color: green;
       padding: 20px;
       text-align: center;
       font-size: 20px;
@@ -52,10 +52,33 @@
     <p><h2>Please upload a photo of the ingredients here: </h2></p>
     <form enctype="multipart/form-data" action="/upload" method="post">
         File: <input id="imageLoader" type="file" name="image_file" />
-        <br />
-        <br />
         <input type="submit" value="upload" onclick="upload_image();"/>
     </form>
+
+
+
+<head>
+  <title>FilePond from CDN</title>
+
+  <!-- Filepond stylesheet -->
+  <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+
+</head>
+<body>
+
+  <!-- We'll transform this input into a pond -->
+  <input type="file" class="filepond">
+
+  <!-- Load FilePond library -->
+  <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+
+  <!-- Turn all file input elements into ponds -->
+  <script>
+  FilePond.parse(document.body);
+  </script>
+
+
+
 
 <div class="column">
 	<br />
