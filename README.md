@@ -1,13 +1,9 @@
 # Recipecialist
 
-## Demo Implementation
------------------------  
-First, run
-```
-python app.py
-```
+This application is the project of _COMS4995 sec.009 **Data-Analytics Pipeline**_.
 
-Next, open a browser and nevigate to `0.0.0.0:7777`. An index page with instructions to upload the ingredient photo will show. Upload a photo by clicking on the button.
+This product targets users who love foods and like to cook by themselves. Users can use their phone to take pictures of ingredients available at hand, and our application would recognize those ingredients. Based on the ingredients, the application would recommend corresponding recipes with such ingredients to users.
+
 
 <img src="https://github.com/lullaby1024/Pipeline_Project/blob/master/demo/MVP/index_page.png" width="60%">
 
@@ -19,9 +15,6 @@ The uploading service is handled by `UploadHandler()`. If the file is successful
 
 <img src="https://github.com/lullaby1024/Pipeline_Project/blob/master/demo/MVP/upload.png" width="60%">
 
-Enter `0.0.0.0:7777/recommend` in the address bar. This will trigger the `MainHandler()` to call the model with the given image and return recommended recipes.
 
 <img src="https://github.com/lullaby1024/Pipeline_Project/blob/master/demo/MVP/recommend.png" width="90%">
 
-## Related Links
-[JIRA Roadmap](https://toydemoproject.atlassian.net/secure/Roadmap.jspa?projectKey=REC&rapidView=16)
