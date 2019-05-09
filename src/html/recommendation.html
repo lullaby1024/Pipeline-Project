@@ -26,7 +26,24 @@
        </style>
    </head>
    <body>
-        <p><h1>Recommended recipes: </h1></p>
+        <p><h1>Identified ingredients: </h1></p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Ingredients</th>
+                    <th>Confidence</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for k, v in data[0].items()%}
+                <tr>
+                    <td>{{k}}</td>
+                    <td>{{v}}</td>
+                </tr>
+            {% end %}
+            </tbody>
+        </table>
+        <p><h2>Recommended recipes: </h2></p>
         <table class="table">
             <thead>
                 <tr>
@@ -36,7 +53,7 @@
                 </tr>
             </thead>
             <tbody>
-            {% for r in data%}
+            {% for r in data[1]%}
                 <tr>
                     <td>{{r['title']}}</td>
                     <td>{{r['ingredients']}}</td>
