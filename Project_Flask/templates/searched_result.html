@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<style>
+.btn {
+  border: none;
+  background-color: inherit;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+}
+.success {
+  color: blue;
+}
+
+.success:hover {
+  background-color: lightblue;
+  color: white;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(odd) {
+  background-color: #cce0ff;
+}
+</style>
+
+
+<body>
+  <h1>Recipiest</h1>
+
+  <h2>You can cook these!</h2>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Ingredient</th>
+    <th>Instructions</th>
+  </tr>
+  <tc>
+    {% for result in all_result %}
+                <tr>
+                    <td>{{ result[0] }}</td>
+                    <td>{{ result[1] }}</td>
+                    <td>{{ result[2] }}</td>
+                </tr>
+    {% endfor %}
+  </tc>
+</table>
+
+
+</body>
+
+
+</html>
