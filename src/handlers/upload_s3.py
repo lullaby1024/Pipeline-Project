@@ -19,8 +19,9 @@ class UploadHandler(tornado.web.RequestHandler):
 
             # Upload image to s3
             # key_name = 'test.' + file['filename'].split('.')[1]
-            ACCESS_KEY_ID = 'AKIAJXFWIJSEUEELIH2Q'
-            ACCESS_SECRET_KEY = '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'
+            # HIDDEN KEYS
+            ACCESS_KEY_ID = ''
+            ACCESS_SECRET_KEY = ''
 
             s3 = boto3.resource('s3',
                                 aws_access_key_id=ACCESS_KEY_ID,
