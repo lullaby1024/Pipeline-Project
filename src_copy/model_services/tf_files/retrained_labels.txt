@@ -1,0 +1,11 @@
+beef
+broccoli
+carrot
+chicken
+egg
+eggplant
+lettuce
+onion
+potato
+sausage
+tomato
