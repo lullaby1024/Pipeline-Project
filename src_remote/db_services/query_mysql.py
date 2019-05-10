@@ -15,8 +15,6 @@ def query(ingredients):
     # cursor = cnx.cursor()
 
     # Connect to s3 database
-    # ACCESS_KEY_ID = 'AKIAI63EPGLJ4NNTSCNQ'
-    # ACCESS_KEY = 'uMFYlQPyj5YgW19xKakqzGz0fCEsqmDWUi9fFAPP'
     # bucket = 'recipecialist'
     #
     # cursor = connect(aws_access_key_id = ACCESS_KEY_ID,
