@@ -4,34 +4,23 @@ import logging
 import os
 import json
 
-from db_services.query_mysql import query
-# from src.model_services.label_image import predict_label
-# from src.handlers.upload import UploadHandler
-from handlers.upload_s3 import UploadHandler
-from model_services.label_image_s3 import detect_labels
-
+from src.db_services.query_mysql import query
+from src.model_services.label_image import predict_label
+from src.handlers.upload import UploadHandler
 
 class IndexHandler(tornado.web.RequestHandler):
     def get(self):
         self.render("html/index.html")
 
-
 class MainHandler(tornado.web.RequestHandler):
 
     def get(self):
-        # img_path = './uploads/test_img.jpg'
-        # img_url = 'http://s3-us-east-1.amazonaws.com/recipecialist/test_img.jpg'
-
-        results = []
-        query_ingr = detect_labels()  # list of ingredients
-        results.append(query_ingr)
-        # self.render("html/labeling.html", data=query_ingr)
+        # CAVEAT: local executions
+        img_path = './uploads/test_img.jpg'
+        query_ingr = predict_label(img_path)  # list of ingredients
         # self.write(query_ingr)
-        q_results = query(list(query_ingr.keys()))  # dictionary
-        results.append(q_results)
-
+        results = query(query_ingr)  # dictionary
         self.render("html/recommendation.html", data=results)
-
 
 class Application(tornado.web.Application):
     def __init__(self):
