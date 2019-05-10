@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+   <head>
+       <title>Recommended Recipe</title>
+       <style>
+            .table {
+                border: solid 1px #DDEEEE;
+                border-collapse: collapse;
+                border-spacing: 0;
+                font: normal 13px Arial, sans-serif;
+            }
+            .table thead th {
+                background-color: #DDEFEF;
+                border: solid 1px #DDEEEE;
+                color: #336B6B;
+                padding: 10px;
+                text-align: left;
+                text-shadow: 1px 1px 1px #fff;
+            }
+            .table tbody td {
+                border: solid 1px #DDEEEE;
+                color: #333;
+                padding: 10px;
+                text-shadow: 1px 1px 1px #fff;
+            }
+       </style>
+   </head>
+   <body>
+        <p><h1>Identified ingredients: </h1></p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Ingredients</th>
+                    <th>Confidence</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for k, v in data[0].items()%}
+                <tr>
+                    <td>{{k}}</td>
+                    <td>{{v}}</td>
+                </tr>
+            {% end %}
+            </tbody>
+        </table>
+        <p><h2>Recommended recipes: </h2></p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Ingredients</th>
+                    <th>Instructions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for r in data[1]%}
+                <tr>
+                    <td>{{r[0]}}</td>
+                    <td>{{r[1]}}</td>
+                    <td>{{r[2]}}</td>
+                </tr>
+            {% end %}
+            </tbody>
+        </table>
+
+   </body>
+ </html>
