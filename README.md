@@ -22,7 +22,7 @@ We developed two versions throughout the project: the **remote** and the **local
       - Identifies multiple ingredients with confidence
    - Builds recipe database on Google Cloud
 
-- **Local (an earlier version) **
+- **Local (an earlier version)**
    - Uploads and stores images locally at './uploads/'
    - Uses (ref: ) as model
       - Identifies a single ingredient
