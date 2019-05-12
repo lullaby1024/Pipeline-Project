@@ -2,7 +2,7 @@
 
 This application is the project of _COMS4995 sec.009 **Data-Analytics Pipeline**_.
 
-This product targets users who love foods and like to cook by themselves. Users can use their phone to take pictures of ingredients available at hand, and our application would recognize those ingredients. Based on the ingredients, the application would recommend corresponding recipes with such ingredients to users.
+This product targets users who love foods and like to cook by themselves. Users can use their mobiles to take pictures of ingredients available at hand, and our application would recognize those ingredients. Based on the ingredients, the application would recommend corresponding recipes with such ingredients to users.
 
 Below is the **minimum viable product** diagram of this application.
 
@@ -10,19 +10,45 @@ Below is the **minimum viable product** diagram of this application.
 
 
 
-We use two services in this MVP: **image recognition service** and **recommender service**.
+We provide two services in this MVP: **image recognition service** and **recommender service**.
 
-After a photo is uploaded to the app,  the **image recognition service** will recognize the ingredient through a model trained using image database. Then, the ingredient is passed to the **recommender service** , which will use recipe database to recommend recipes based on the ingredient recognized. 
+After a photo has been uploaded to the app,  the **image recognition service** will recognize ingredients through a model trained using an image database. Then, the ingredients will be passed to the **recommender service** , which will use the recipe database to recommend recipes based on the ingredient recognized. 
 
-## Get Start (Demo Implementation)
+We developed two versions throughout the project: the **remote** and the **local** version. The differences lie in where the resources are stored and handled. 
+   
+- **Remote**
+   - Uploads and stores images at s3
+   - Uses Amazon Rekognition as model
+      - Identifies multiple ingredients with confidence
+   - Builds recipe database on Google Cloud
 
-1. run
+- **Local (an earlier version) **
+   - Uploads and stores images locally at './uploads/'
+   - Uses (ref: ) as model
+      - Identifies a single ingredient
+   - Builds recipe database at MySQL locally
+
+## Running the app (remote)
+
+1. Run
+
+   ```python
+   python app.py
+   ```
+   
+2. Open a browser and nevigate to `0.0.0.0:7777`. An index page with instructions to upload the ingredient photo will show. Upload a photo by clicking on the button.
+
+3. Enter `0.0.0.0:7777/recommend` in the address bar. This will trigger the `MainHandler()` to call the model with the given image and return recommended recipes.
+
+## Running the app (local)
+
+1. Run
 
    ```python
    python app.py
    ```
 
-2. open a browser and nevigate to `0.0.0.0:7777`. An index page with instructions to upload the ingredient photo will show. Upload a photo by clicking on the button.
+2. Open a browser and nevigate to `0.0.0.0:7777`. An index page with instructions to upload the ingredient photo will show. Upload a photo by clicking on the button.
 
    <img src="https://github.com/lullaby1024/Pipeline_Project/blob/master/demo/MVP/index_page.png" width="60%">
 
