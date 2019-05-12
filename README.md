@@ -24,7 +24,7 @@ We developed two versions throughout the project: the **remote** and the **local
 
 - **Local (an earlier version)**
    - Uploads and stores images locally at './uploads/'
-   - Uses (ref: ) as model
+   - Uses (ref: Googlecodelabs/tensorflow-for-poets-2) as model
       - Identifies a single ingredient
    - Builds recipe database at MySQL locally
 
