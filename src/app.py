@@ -4,9 +4,9 @@ import logging
 import os
 import json
 
-from src.db_services.query_mysql import query
-from src.model_services.label_image import predict_label
-from src.handlers.upload import UploadHandler
+from db_services.query_mysql import query
+from model_services.label_image import predict_label
+from handlers.upload import UploadHandler
 
 class IndexHandler(tornado.web.RequestHandler):
     def get(self):
@@ -16,7 +16,7 @@ class MainHandler(tornado.web.RequestHandler):
 
     def get(self):
         # CAVEAT: local executions
-        img_path = './uploads/test_img.jpg'
+        img_path = 'test_img.jpg'
         query_ingr = predict_label(img_path)  # list of ingredients
         # self.write(query_ingr)
         results = query(query_ingr)  # dictionary
