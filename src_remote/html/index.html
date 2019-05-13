@@ -25,6 +25,21 @@ mypic.border=1;
 }
 </script>
 <style>
+#background {
+  border: 2px solid black;
+  padding: 25px;
+  background: url(bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.header {
+  padding: 10px;
+  text-align: center;
+  background: #F0FFF0;
+  color: black;
+  font-size: 20px;
+  font-family: arial;
+}
 /*样式1*/
 .a-upload {
   padding: 4px 10px;
@@ -89,12 +104,17 @@ mypic.border=1;
 </head>
 
 <body>
+<div id="background">
 <center>
-<p><h1>Please upload a photo of the ingredients here: </h1></p>
+<div class="header">
+<p><h1>Tell us what you have by uploading a photo!</h1></p>
+</div>
+<br />
 <form enctype="multipart/form-data" action="/upload" method="post">
 <a href="javascript:;" class="a-upload">
 Choose File <input name="image_file" type="file" id="image_file" size="40" onchange="viewmypic(showimg,this.form.image_file);" />
 </a>
+<br />
 <br />
 <a href="javascript:;" class="file">
 Upload <input type="submit" value="upload" />
@@ -106,5 +126,6 @@ Upload <input type="submit" value="upload" />
 <div style="display:none">
 </div>
 </center>
+</div>
 </body>
 </html>
