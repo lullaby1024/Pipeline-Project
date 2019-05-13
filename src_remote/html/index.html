@@ -7,15 +7,12 @@ function viewmypic(mypic,upfile) {
 if(upfile.files && upfile.files[0])
 {
 mypic.style.display="";
-//火狐下，直接设img属性
-//mypic.src = upfile.files[0].getAsDataURL();
 
- //火狐7以上版本不能用上面的getAsDataURL()方式获取，需要一下方式
 mypic.src = window.URL.createObjectURL(upfile.files[0]);
 }
 else
 {
-//IE下
+
 if (upfile.value){
 mypic.src=upfile.value;
 mypic.style.display="";
@@ -28,19 +25,20 @@ mypic.border=1;
 #background {
   border: 2px solid black;
   padding: 25px;
-  background: url(bg.jpg);
+  background: url('bg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
 .header {
   padding: 10px;
   text-align: center;
-  background: #F0FFF0;
+  background: #FFFFEB;
   color: black;
+  opacity: 0.9;
   font-size: 20px;
-  font-family: arial;
+  font-family: Comic Sans MS;
 }
-/*样式1*/
+
 .a-upload {
   padding: 4px 10px;
   height: 20px;
@@ -73,7 +71,7 @@ mypic.border=1;
   border-color: #ccc;
   text-decoration: none
 }
-/*样式2*/
+
 .file {
   position: relative;
   display: inline-block;
@@ -107,7 +105,8 @@ mypic.border=1;
 <div id="background">
 <center>
 <div class="header">
-<p><h1>Tell us what you have by uploading a photo!</h1></p>
+    <p><h1>Welcome to Recipecialist! </h1></p>
+<p><h2>Tell us what you have by uploading a photo!</h2></p>
 </div>
 <br />
 <form enctype="multipart/form-data" action="/upload" method="post">
@@ -120,11 +119,15 @@ Choose File <input name="image_file" type="file" id="image_file" size="40" oncha
 Upload <input type="submit" value="upload" />
 </a>
 </form>
-<img name="showimg" id="showimg" src="" style="display:none;" alt="Preview"/>
+<img name="showimg" width=200 id="showimg" src="" style="display:none;" alt="Preview"/>
 <br />
-</div>
 <div style="display:none">
 </div>
+    <form method="POST" action="/search">
+<p><h2 class="header"> Or search by ingredients directly (separate by ','):</h2>
+    <input type="text" name="search_text">
+    <input type="submit" value="Search"></p >
+</form>
 </center>
 </div>
 </body>

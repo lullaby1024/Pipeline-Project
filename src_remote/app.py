@@ -2,13 +2,11 @@ import tornado.ioloop
 import tornado.web
 import logging
 import os
-import json
 
-from db_services.query_mysql import query
-# from src.model_services.label_image import predict_label
-# from src.handlers.upload import UploadHandler
+from db_services._query import query
 from handlers.upload_s3 import UploadHandler
 from model_services.label_image_s3 import detect_labels
+from handlers.search import SearchHandler
 
 
 class IndexHandler(tornado.web.RequestHandler):
@@ -19,13 +17,11 @@ class IndexHandler(tornado.web.RequestHandler):
 class MainHandler(tornado.web.RequestHandler):
 
     def get(self):
-        # img_path = './uploads/test_img.jpg'
         # img_url = 'http://s3-us-east-1.amazonaws.com/recipecialist/test_img.jpg'
 
         results = []
         query_ingr = detect_labels()  # list of ingredients
         results.append(query_ingr)
-        # self.render("html/labeling.html", data=query_ingr)
         # self.write(query_ingr)
         q_results = query(list(query_ingr.keys()))  # dictionary
         results.append(q_results)
@@ -43,8 +39,8 @@ class Application(tornado.web.Application):
         app_handlers = [
             (r'^/$', IndexHandler),
             (r'^/upload$', UploadHandler),
-            (r'^/recommend$', MainHandler)
-
+            (r'^/recommend$', MainHandler),
+            (r'^/search$', SearchHandler)
         ]
 
         super(Application, self).__init__(app_handlers, **app_settings)
