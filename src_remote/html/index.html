@@ -1,17 +1,110 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
-    <title>Upload Photo</title>
-</head>
-<body>
-    <p><h1>Please upload a photo of the ingredients here: </h1></p>
-    <form enctype="multipart/form-data" action="/upload" method="post">
-        File: <input type="file" name="image_file" />
-        <br />
-        <br />
-        <input type="submit" value="upload" />
-    </form>
+<meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+<title>Upload Photo</title>
+<script>
+function viewmypic(mypic,upfile) {
+if(upfile.files && upfile.files[0])
+{
+mypic.style.display="";
+//火狐下，直接设img属性
+//mypic.src = upfile.files[0].getAsDataURL();
 
+ //火狐7以上版本不能用上面的getAsDataURL()方式获取，需要一下方式
+mypic.src = window.URL.createObjectURL(upfile.files[0]);
+}
+else
+{
+//IE下
+if (upfile.value){
+mypic.src=upfile.value;
+mypic.style.display="";
+mypic.border=1;
+}
+}
+}
+</script>
+<style>
+/*样式1*/
+.a-upload {
+  padding: 4px 10px;
+  height: 20px;
+  line-height: 20px;
+  position: relative;
+  cursor: pointer;
+  color: #888;
+  background: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1
+}
+
+.a-upload  input {
+  position: absolute;
+  font-size: 100px;
+  right: 0;
+  top: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  cursor: pointer
+}
+
+.a-upload:hover {
+  color: #444;
+  background: #eee;
+  border-color: #ccc;
+  text-decoration: none
+}
+/*样式2*/
+.file {
+  position: relative;
+  display: inline-block;
+  background: #D0EEFF;
+  border: 1px solid #99D3F5;
+  border-radius: 4px;
+  padding: 4px 12px;
+  overflow: hidden;
+  color: #1E88C7;
+  text-decoration: none;
+  text-indent: 0;
+  line-height: 20px;
+}
+.file input {
+  position: absolute;
+  font-size: 100px;
+  right: 0;
+  top: 0;
+  opacity: 0;
+}
+.file:hover {
+  background: #AADFFD;
+  border-color: #78C3F3;
+  color: #004974;
+  text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+<center>
+<p><h1>Please upload a photo of the ingredients here: </h1></p>
+<form enctype="multipart/form-data" action="/upload" method="post">
+<a href="javascript:;" class="a-upload">
+Choose File <input name="image_file" type="file" id="image_file" size="40" onchange="viewmypic(showimg,this.form.image_file);" />
+</a>
+<br />
+<a href="javascript:;" class="file">
+Upload <input type="submit" value="upload" />
+</a>
+</form>
+<img name="showimg" id="showimg" src="" style="display:none;" alt="Preview"/>
+<br />
+</div>
+<div style="display:none">
+</div>
+</center>
 </body>
 </html>
