@@ -14,55 +14,51 @@ We provide two services in this MVP: **image recognition service** and **recomme
 
 After a photo has been uploaded to the app,  the **image recognition service** will recognize ingredients through a model trained using an image database. Then, the ingredients will be passed to the **recommender service** , which will use the recipe database to recommend recipes based on the ingredient recognized. 
 
-We developed two versions throughout the project: the **remote** and the **local** version. The differences lie in where the resources are stored and handled. 
+We developed two versions throughout the project: the **remote** and the **local** version. The major difference lies in where the resources are stored and handled. 
    
 - **Remote**
    - Uploads and stores images at s3
    - Uses Amazon Rekognition as model
       - Identifies multiple ingredients with confidence
    - Builds recipe database on Google Cloud
+   - Provides direct search by typing in ingredients
 
 - **Local (an earlier version)**
-   - Uploads and stores images locally at './uploads/'
+   - Uploads and stores images locally
    - Uses [TensorFlow for poets 2](https://github.com/googlecodelabs/tensorflow-for-poets-2) as model
       - Identifies a single ingredient
    - Builds recipe database at MySQL locally
-
-## Running the app (remote)
-
-1. Run
-
-   ```python
-   python app.py
-   ```
    
-2. Open a browser and nevigate to `0.0.0.0:7777`. An index page with instructions to upload the ingredient photo will show. Upload a photo by clicking on the button.
+- The following section is a simple demonstration of the remote version.
 
-3. Enter `0.0.0.0:7777/recommend` in the address bar. This will trigger the `MainHandler()` to call the model with the given image and return recommended recipes.
+## Running the app
 
-## Running the app (local)
-
-1. Run
+- Run
 
    ```python
-   python app.py
+   python src_remote/app.py
    ```
 
-2. Open a browser and nevigate to `0.0.0.0:7777`. An index page with instructions to upload the ingredient photo will show. Upload a photo by clicking on the button.
+- Open a browser and nevigate to `0.0.0.0:7777`. An index page with instructions will show. 
 
-   <img src="https://github.com/lullaby1024/Pipeline_Project/blob/master/demo/MVP/index_page.png" width="60%">
+### Get recommendation by uploading photo
+- Upload a photo and click the button.
+<img src="https://github.com/lullaby1024/Pipeline_Project/blob/master/demo/MVP_v2/index_page.png" width="70%">
 
-   Here we tested a simple photo of tomatoes.
+   - The uploading service is handled by `UploadHandler()`. If the file is successfuly uploaded, a message will be sent.
+   <img src="https://github.com/lullaby1024/Pipeline_Project/blob/master/demo/MVP_v2/upload.png" width="60%">
 
-   <img src="https://github.com/lullaby1024/Pipeline_Project/blob/master/demo/MVP/tomatoes.jpg" width="40%">
+- Enter `0.0.0.0:7777/recommend` in the address bar. This will trigger the `MainHandler()` to call the model with the given image and return recommended recipes.
 
-   The uploading service is handled by `UploadHandler()`. If the file is successfuly uploaded, a message will be sent.
+<img src="https://github.com/lullaby1024/Pipeline_Project/blob/master/demo/MVP_v2/recommend1.png" width="40%">
+<img src="https://github.com/lullaby1024/Pipeline_Project/blob/master/demo/MVP_v2/recommend2.png" width="80%">
 
-   <img src="https://github.com/lullaby1024/Pipeline_Project/blob/master/demo/MVP/upload.png" width="60%">
+### Get recommendation by typing ingredients
+- Type in the ingredients in the search box (separated by ",") and click the button. 
+<img src="https://github.com/lullaby1024/Pipeline_Project/blob/master/demo/MVP_v2/index_text.png" width="40%">
 
-3. Enter `0.0.0.0:7777/recommend` in the address bar. This will trigger the `MainHandler()` to call the model with the given image and return recommended recipes.
-
-   <img src="https://github.com/lullaby1024/Pipeline_Project/blob/master/demo/MVP/recommend.png" width="90%">
+- The `SearchHandler()` will handle the query request and return the results in the same window.
+<img src="https://github.com/lullaby1024/Pipeline_Project/blob/master/demo/MVP_v2/search.png" width="80%">
 
 ## Contributors
 
