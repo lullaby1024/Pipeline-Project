@@ -39,9 +39,11 @@ class SearchHandler(tornado.web.RequestHandler):
     def post(self):
         
         ingredient_input = self.request.arguments['ingredient_search'][0]
-        ingredient_input = str(ingredient_input)
+        ingredient_input = str(ingredient_input)[2:]
+        ingredient_input = ingredient_input[:-1]
         #ingredient_input = self.get_argument('ingredient_search')
         print(ingredient_input)
+        print(type(ingredient_input))
         results = []
         q_results = query_search(ingredient_input)  # dictionary
         results.append(q_results)
